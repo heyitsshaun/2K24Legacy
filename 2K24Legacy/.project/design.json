@@ -1,9 +1,5 @@
 {
-  "Tags": [
-    {
-      "Key": "Fuck, this, shit"
-    }
-  ],
+  "Tags": [],
   "SeparateRuntimeDependencies": false,
   "IncludeSources": true
 }

@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>543,573</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>615,478</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -46,6 +46,7 @@
       <x:String>UiPath.CSV</x:String>
       <x:String>UiPath.CSV.Activities</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -92,16 +93,18 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="512,287" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="512,413" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="GamesLog" />
       <Variable x:TypeArguments="x:String" Name="GamesCsvPath" />
+      <Variable x:TypeArguments="x:String" Name="StartFromPostGame" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:MessageBox Caption="{x:Null}" AutoCloseAfter="00:00:00" Buttons="YesNo" ChosenButton="[StartFromPostGame]" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="450,86" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Start from Postgame Sequence?&quot;]" />
     <Sequence DisplayName="Initialize" sap:VirtualizedContainerService.HintSize="450,83" sap2010:WorkflowViewState.IdRef="Sequence_22">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -183,27 +186,28 @@
       </If>
       <Delay DisplayName=" Delay 1 second" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="1037,25" sap2010:WorkflowViewState.IdRef="Delay_1" />
     </Sequence>
-    <Flowchart DisplayName="Main Flowchart" sap:VirtualizedContainerService.HintSize="634,637" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart DisplayName="Main Flowchart" sap:VirtualizedContainerService.HintSize="634,661" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
           <av:Size x:Key="ShapeSize">60,75</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,158.5</av:PointCollection>
+          <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,136.5</av:PointCollection>
+          <x:Double x:Key="Height">624</x:Double>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
-        <x:Reference>__ReferenceID0</x:Reference>
+        <x:Reference>__ReferenceID3</x:Reference>
       </Flowchart.StartNode>
       <FlowStep x:Name="__ReferenceID0">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">200,158.5</av:Point>
+            <av:Point x:Key="ShapeLocation">200,308.5</av:Point>
             <av:Size x:Key="ShapeSize">200,83</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">300,241.5 300,261.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">300,391.5 300,411.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Game Loop" sap:VirtualizedContainerService.HintSize="496,909.5" sap2010:WorkflowViewState.IdRef="Sequence_27">
+        <Sequence DisplayName="Game Loop" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_27">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="InPostGame" />
             <Variable x:TypeArguments="s1:DateTime" Name="GameStart" />
@@ -246,11 +250,7 @@
             <Sequence sap:VirtualizedContainerService.HintSize="548,1322" sap2010:WorkflowViewState.IdRef="Sequence_32">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:TimeSpan" Name="TimeSinceGameStart" />
-                <Variable x:TypeArguments="x:TimeSpan" Name="DelayBeforePostGameChecks">
-                  <Variable.Default>
-                    <Literal x:TypeArguments="x:TimeSpan" Value="00:09:00" />
-                  </Variable.Default>
-                </Variable>
+                <Variable x:TypeArguments="x:TimeSpan" Default="00:09:00" Name="DelayBeforePostGameChecks" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -349,9 +349,9 @@
           <FlowStep x:Name="__ReferenceID2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <av:Point x:Key="ShapeLocation">200,261.5</av:Point>
+                <av:Point x:Key="ShapeLocation">200,411.5</av:Point>
                 <av:Size x:Key="ShapeSize">200,83</av:Size>
-                <av:PointCollection x:Key="ConnectorLocation">300,344.5 300,368.5</av:PointCollection>
+                <av:PointCollection x:Key="ConnectorLocation">300,494.5 300,518.5</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Sequence DisplayName="Log Game" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_40">
@@ -366,9 +366,9 @@
               <FlowStep x:Name="__ReferenceID1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <av:Point x:Key="ShapeLocation">200,368.5</av:Point>
+                    <av:Point x:Key="ShapeLocation">200,518.5</av:Point>
                     <av:Size x:Key="ShapeSize">200,83</av:Size>
-                    <av:PointCollection x:Key="ConnectorLocation">300,451.5 300,470 170,470 170,200 200,200</av:PointCollection>
+                    <av:PointCollection x:Key="ConnectorLocation">300,601.5 300,620 170,620 170,350 200,350</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <Sequence DisplayName="Start a New Game" sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_37">
@@ -379,6 +379,12 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:Comment sap:VirtualizedContainerService.HintSize="548,95.5" sap2010:WorkflowViewState.IdRef="Comment_13" Text="// From the postgame tunnel, this sequence will start a new game, enter the arena and end the shootaround." />
+                  <ui:Comment sap:VirtualizedContainerService.HintSize="548,115" sap2010:WorkflowViewState.IdRef="Comment_19" Text="// After some games there are stupid selfie videos from NBA players. Just pressing B a couple times in case one of them gets pulled up." />
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="SimPad.Use(GamePadControl.B, 0, 400)&#xD;&#xA;System.Threading.Thread.Sleep(500)&#xD;&#xA;SimPad.Use(GamePadControl.B, 0, 400)&#xD;&#xA;System.Threading.Thread.Sleep(500)&#xD;&#xA;SimPad.Use(GamePadControl.B, 0, 400)&#xD;&#xA;System.Threading.Thread.Sleep(500)" DisplayName="Dismiss Dialogues" sap:VirtualizedContainerService.HintSize="548,165" sap2010:WorkflowViewState.IdRef="InvokeCode_22">
+                    <ui:InvokeCode.Arguments>
+                      <InOutArgument x:TypeArguments="s:SimGamePad" x:Key="simPad">[simPad]</InOutArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
                   <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Start&#xA;SimPad.Use(GamePadControl.Start, 0, 300)&#xA;System.Threading.Thread.Sleep(1000)" DisplayName="Start Next Game Menu" sap:VirtualizedContainerService.HintSize="548,165" sap2010:WorkflowViewState.IdRef="InvokeCode_14">
                     <ui:InvokeCode.Arguments>
                       <InOutArgument x:TypeArguments="s:SimGamePad" x:Key="simPad">[simPad]</InOutArgument>
@@ -475,6 +481,26 @@
       </FlowStep>
       <x:Reference>__ReferenceID1</x:Reference>
       <x:Reference>__ReferenceID2</x:Reference>
+      <FlowDecision x:Name="__ReferenceID3" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="79.5,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+        <FlowDecision.Condition>
+          <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="StartFromPostGame = &quot;Yes&quot;" />
+        </FlowDecision.Condition>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">260.25,136.5</av:Point>
+            <av:Size x:Key="ShapeSize">79.5,87</av:Size>
+            <av:PointCollection x:Key="TrueConnector">260.25,180 230.25,180 230.25,122.097962614114 478,122.097962614114 478,560 400,560</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">339.75,180 360,180 360,278.5 300,278.5 300,308.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <FlowDecision.True>
+          <x:Reference>__ReferenceID1</x:Reference>
+        </FlowDecision.True>
+        <FlowDecision.False>
+          <x:Reference>__ReferenceID0</x:Reference>
+        </FlowDecision.False>
+      </FlowDecision>
     </Flowchart>
   </Sequence>
 </Activity>
